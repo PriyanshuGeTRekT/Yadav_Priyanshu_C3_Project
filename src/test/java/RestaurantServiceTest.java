@@ -32,7 +32,7 @@ assertNotNull(restaurant);
 
     }
 
-    
+
     @Test
     public void searching_for_non_existing_restaurant_should_throw_exception() throws restaurantNotFoundException {
         //WRITE UNIT TEST CASE HERE
@@ -71,7 +71,7 @@ assertNotNull(restaurant);
 
     @Test
     public void add_restaurant_should_increase_list_of_restaurants_size_by_1(){
-        LocalTime openingTime = LocalTime.parse("10:30:00");
+        LocalTime openingTime = LocalTime.parse("30:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
         restaurant = service.addRestaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         restaurant.addToMenu("Sweet corn soup",119);
