@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -19,21 +18,18 @@ public class Restaurant {
     }
 
     public boolean isRestaurantOpen() {
-        LocalTime currentTime=getCurrentTime();
-       if(currentTime.isAfter(openingTime) && currentTime.isBefore(closingTime)){
-           return true;
-       }
-       else return false;
-        //DELETE ABOVE STATEMENT AND WRITE CODE HERE
+        LocalTime currentTime = getCurrentTime();
+        return currentTime.isAfter(openingTime) && currentTime.isBefore(closingTime);
     }
 
     public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
-List<Item> items=new ArrayList<>();
-        items.add(new Item("pizza",150));
-        items.add(new Item("Biryani",200));
-        return items;
+        if (menu != null && !menu.isEmpty()) {
+            return menu;
+        } else {
+            return null;
+        }
     }
 
     private Item findItemByName(String itemName){
@@ -69,27 +65,17 @@ List<Item> items=new ArrayList<>();
     public String getName() {
         return name;
     }
-
-    public int getOrderTotal(List<String> selectedItems) {
-        int total = 0;
-        for (String itemName : selectedItems) {
-            for (Item item : menu) {
-                if (item.getName().equals(itemName)) {
-                    total += item.getPrice();
-                    break;
+    public int totalValue(List<String> itemNames) {
+        int totalPrice = 0;
+        if (itemNames != null) {
+            for (String name : itemNames) {
+                for (Item item : menu) {
+                    if (item.getName().equals(name))
+                        totalPrice = totalPrice + item.getPrice();
                 }
+                System.out.println(totalPrice);
             }
         }
-        return total;
+        return totalPrice;
     }
-
-//implemented features to calculate total value
-    //1-create a method for get order total
-    //2-take a total as -0;
-    //ittirate through selectedItems
-    //ittirate through menu items
-    //compare menu item and selected item
-    //return total of menu price
-
-
 }
